@@ -4,12 +4,17 @@ node {
    def gradleHome
    parameters { 
        string(name: 'DEPLOY_ENV', defaultValue: 'staging', description: '') 
-       
+       choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
    }
    
    environment {
     GitBranch = 'master'
     
+   }
+      stage('ParamsValue') {
+		echo "Choice: ${params.CHOICE}"
+		echo "Deployment Type: ${params.DEPLOY_ENV}"
+	  
    }
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
@@ -21,7 +26,7 @@ node {
       // ** NOTE: This 'M3' Maven tool must be configured
       // **       in the global configuration.           
       gradleHome = tool 'gradle31'
-      echo "Deployment Type: ${params.DEPLOY_ENV}"
+      
    }
    stage('Build') {
       // Run the maven build
@@ -34,5 +39,6 @@ node {
    stage('Results') {
       junit '**/TEST-*.xml'
       //archive 'build/*.jar'
+	  
    }
 }
