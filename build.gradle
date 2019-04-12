@@ -1,4 +1,4 @@
-//comment for webhook trigger test
+//comment for webhook trigger test, added github url in project
 
 plugins {
   id "org.sonarqube" version "2.6.1"
