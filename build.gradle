@@ -1,3 +1,5 @@
+//comment for webhook trigger test
+
 plugins {
   id "org.sonarqube" version "2.6.1"
 }
