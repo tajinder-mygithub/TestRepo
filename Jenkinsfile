@@ -11,7 +11,6 @@ node {
     GitBranch = 'master'
     
    }
-
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
       //git 'https://github.com/tajinder-mygithub/TestRepo'
@@ -27,9 +26,9 @@ node {
    stage('Build') {
       // Run the maven build
       if (isUnix()) {
-         sh "'${gradleHome}/bin/gradle' build"
+         sh "'${gradleHome}/bin/gradle' clean build"
       } else {
-         bat(/"${gradleHome}\bin\gradle.bat" build/)
+         bat(/"${gradleHome}\bin\gradle.bat" clean build/)
       }
    }
    stage('Results') {
