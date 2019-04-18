@@ -14,6 +14,8 @@ node {
       stage('ParamsValue') {
 		echo "Choice: ${params.CHOICE}"
 		echo "Deployment Type: ${params.DEPLOY_ENV}"
+		
+		step([$class: 'WsCleanup'])
 	  
    }
    stage('Preparation') { // for display purposes
