@@ -7,7 +7,7 @@ plugins {
 description = 'Example of SonarQube Scanner for Gradle Usage'
 group = 'com.bloqtimes.Forum'
 def artifactId = projectDir.name
-version = '8.0.1-SNAPSHOT
+version = '8.0.1-SNAPSHOT'
 /*
 sonarqube {
     properties {
@@ -33,9 +33,7 @@ apply plugin: 'application'
 
 apply plugin: 'jacoco'
 
-group = 'com.bloqtimes.blockchain'
-def artifactId = projectDir.name
-version = '8.0.1-SNAPSHOT'
+
 
 
 buildscript {
