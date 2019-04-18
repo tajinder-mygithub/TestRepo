@@ -1,5 +1,14 @@
 //comment for webhook trigger test, added github url in project , one more time
 
+
+buildscript {
+    repositories {
+		jcenter()
+        //mavenCentral()
+    }
+    dependencies { classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.4.0" }
+}
+
 plugins {
   id "org.sonarqube" version "2.6.1"
 }
@@ -36,13 +45,7 @@ apply plugin: 'jacoco'
 
 
 
-buildscript {
-    repositories {
-		jcenter()
-        //mavenCentral()
-    }
-    dependencies { classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.4.0" }
-}
+
 
 // In this section you declare where to find the dependencies of your project
 repositories {
