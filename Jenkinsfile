@@ -41,4 +41,22 @@ node {
       //archive 'build/*.jar'
 	  
    }
+      stage('Sonar Analysis') {
+      if (isUnix()) {
+         sh "'${gradleHome}/bin/gradle' sonar"
+      } else {
+         bat(/"${gradleHome}\bin\gradle.bat" sonar/)
+      }
+	  
+   }
+
+      stage('Artifact Publishing') {
+      if (isUnix()) {
+         sh "'${gradleHome}/bin/gradle' publish"
+      } else {
+         bat(/"${gradleHome}\bin\gradle.bat" publish/)
+      }
+	  
+   }
+
 }

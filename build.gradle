@@ -5,7 +5,9 @@ plugins {
 }
 
 description = 'Example of SonarQube Scanner for Gradle Usage'
-version = '1.0'
+group = 'com.bloqtimes.Forum'
+def artifactId = projectDir.name
+version = '8.0.1-SNAPSHOT
 /*
 sonarqube {
     properties {
@@ -20,7 +22,9 @@ sonarqube {
  * For more details take a look at the Java Quickstart chapter in the Gradle
  * user guide available at https://docs.gradle.org/3.5/userguide/tutorial_java_projects.html
  */
-
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.artifactory'
+ 
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 
@@ -28,6 +32,19 @@ apply plugin: 'java'
 apply plugin: 'application'
 
 apply plugin: 'jacoco'
+
+group = 'com.bloqtimes.blockchain'
+def artifactId = projectDir.name
+version = '8.0.1-SNAPSHOT
+
+
+buildscript {
+    repositories {
+		jcenter()
+        //mavenCentral()
+    }
+    dependencies { classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.4.0" }
+}
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -47,3 +64,20 @@ dependencies {
 // Define the main class for the application
 mainClassName = 'App'
 
+publishing{
+    repositories {
+        maven {
+            url = "${artifactory_contextUrl}"
+            credentials {
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
+            }
+
+        }
+    }
+  publications{
+    mavenJava(MavenPublication){
+	  from components.java
+	}
+  }
+}
